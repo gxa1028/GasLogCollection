@@ -19,11 +19,15 @@ public class LogHandler implements LineHandler {
 
     @Override
     public void handle(String line) {
+        if ("".equals(line) || line == null) {
+            logger.info(monitorName + "->数据为空");
+            return;
+        }
         try {
             HttpRequest post = HttpUtil.createPost("192.168.1.130:8082" + route);
             post.body(line, "text/plain");
             post.execute();
-            logger.info("monitorName->发送数据:" + line);
+            logger.info(monitorName + "->发送数据:" + line);
         } catch (IORuntimeException e) {
             System.out.println("http超时");
         } catch (ClassCastException e) {
