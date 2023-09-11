@@ -13,8 +13,8 @@ public class LogService {
      public void save(String firstName,String secondName,String data){
           logDao.save(firstName,secondName,data);
      }
-     public String fetchAllData(){
-          return logDao.fetchAllData();
+     public String fetchAllData(String tp){
+          return logDao.fetchAllData(tp);
      }
      public String query(){
           return null;

@@ -174,7 +174,7 @@ public class LogTest {
             if (f.isDirectory()){
                 Map<String,String> map = new HashMap<>();
                 String stationName = getNameFromFile(f);
-                map.put("type",Mapping.mapping.get(stationName));
+                map.put("type",Mapping.feijumapping.get(stationName));
                 File[] plats = f.listFiles();
                 for (int j = 0 ; j < plats.length; j++){// 检测软件层面
                     File plat = plats[j];
