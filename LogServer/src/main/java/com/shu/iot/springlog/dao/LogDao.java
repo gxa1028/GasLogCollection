@@ -30,7 +30,7 @@ public class LogDao {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String currentTime = simpleDateFormat.format(date);
         try {
-            File file = new File(String.format("./log/%s/%s/%s/%s",firstName,currentTime,secondName));
+            File file = new File(String.format("./log/%s/%s/%s",firstName,currentTime,secondName));
             File fileParent = file.getParentFile();
             if (!fileParent.exists()){
                 fileParent.mkdirs();
@@ -115,6 +115,101 @@ public class LogDao {
         mailClient.sendMail(title,content);
     }
 
+    // 填充数据到map里，非居填充在一行里，居民填充在多行里,这里做兼容
+    private List<Map<String,String>> doFillDataWrapper(Map<String,String> standardMap,String stationName,File f,
+    Map<String,String> standardMap2){
+        List<Map<String,String>> res = new ArrayList<>();
+        if (stationName.equals("jm")){
+            File[] dates = f.listFiles();
+            for (int j = 0 ; j < dates.length; j++){
+                File dateFile = dates[j];
+                String dateName = dateFile.getName();
+                Date now = new Date();
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                String currentTime = simpleDateFormat.format(now);
+                if (!dateName.equals(currentTime)){
+                    continue;
+                }
+                File[] plats = dateFile.listFiles();
+                if (plats == null){
+                    // 当天没有检测平台日志
+                    break;
+                }
+                for (int k = 0 ; k < plats.length ;k++){ //检测软件层面
+                    Map<String,String> map = new HashMap<>();
+                    File plat = plats[k];
+                    String platFileName = getNameFromFile(plat);
+                    String first = "";
+                    String second = "";
+                    try {
+                       first = platFileName.split("-")[0];
+                       second = platFileName.split("-")[1];
+                    }catch (Exception e){
+                        logger.error("LogDao.doFillDataWrapper err");
+                    }
+                    map.put("type",standardMap.get(first));
+                    map.put("subtype",standardMap2.get(second));
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    Date date = new Date(plat.lastModified());
+                    map.put("time1",format.format(date));
+                    if (isAlive(plat.lastModified())){
+                        map.put("status1","✅");
+                    }else{
+                        String timeStampStr1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(plat.lastModified());
+                        String timeStampStr2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis());
+                        sendWarningMessage("warning",String.format("管理平台异常❗️❗❗上次存活时间:%s,当前时间%s",
+                                timeStampStr1,timeStampStr2));
+                        map.put("status1","❌");
+                    }
+                    res.add(map);
+                }
+            }
+        }else{
+            Map<String,String> map = new HashMap<>();
+            map.put("type", standardMap.get(stationName));
+            File[] dates = f.listFiles();
+            for (int j = 0 ; j < dates.length; j++){// 日期层面
+                File dateFile = dates[j];
+                String dateName = dateFile.getName();
+                Date now = new Date();
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                String currentTime = simpleDateFormat.format(now);
+                if (!dateName.equals(currentTime)){
+                    continue;
+                }
+                File[] plats = dateFile.listFiles();
+                if (plats == null){
+                    // 当天没有检测平台日志
+                    break;
+                }
+                for (int k = 0 ; k < plats.length ;k++){ //检测软件层面
+                    File plat = plats[k];
+                    String platFileName = getNameFromFile(plat);
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    Date date = new Date(plat.lastModified());
+                    map.put(convertTimeName(platFileName),format.format(date));
+                    if (isAlive(plat.lastModified())){
+                        map.put(convertStatusName(platFileName),"✅");
+                    }else{
+                        String timeStampStr1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(plat.lastModified());
+                        String timeStampStr2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis());
+                        sendWarningMessage("warning",String.format("管理平台异常❗️❗❗上次存活时间:%s,当前时间%s",
+                                timeStampStr1,timeStampStr2));
+                        map.put(convertStatusName(platFileName),"❌");
+                    }
+                }
+            }
+            res.add(map);
+        }
+        return res;
+    }
+
+    private void AggregationResult(List<Map<String,String>> result,List<Map<String,String>> maps){
+        for (int i = 0 ; i < maps.size(); i++){
+            result.add(maps.get(i));
+        }
+    }
+
     public String fetchAllData(String tp){
         JSONObject finResult = new JSONObject();
         JSONObject data = generateHeader(tp);
@@ -125,12 +220,14 @@ public class LogDao {
             return "fail";
         }
         Map<String,String> standardMap;
+        Map<String,String> standardMap2 = null;  // 只有居民会用到
         if (tp.equals("feiju")){
             standardMap = Mapping.feijumapping;
         }else if (tp.equals("manager")){
             standardMap = Mapping.managermapping;
-        }else if (tp.equals("juming")){
-            standardMap = Mapping.jmMapping;
+        }else if (tp.equals("jm")){
+            standardMap = Mapping.jmMapping_First;
+            standardMap2 = Mapping.jmMapping_Second;
         }else{
             logger.error("invalid type!");
             return null;
@@ -139,46 +236,13 @@ public class LogDao {
         for (int i = 0 ; i < fs.length; i++){// 工作站层面
             File f = fs[i];
             if (f.isDirectory()){
-                Map<String,String> map = new HashMap<>();
                 String stationName = getNameFromFile(f);
                 // 非居、居民、管理全部混在一起，需要在读取端做分类 ,mapping 负责 读取端的分类
                 if (standardMap.get(stationName) == null){
                     continue;
                 }
-                map.put("type", standardMap.get(stationName));
-                File[] dates = f.listFiles();
-                for (int j = 0 ; j < dates.length; j++){// 日期层面
-                      File dateFile = dates[j];
-                      String dateName = dateFile.getName();
-                      Date now = new Date();
-                      SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                      String currentTime = simpleDateFormat.format(now);
-                      if (!dateName.equals(currentTime)){
-                          continue;
-                      }
-                      File[] plats = dateFile.listFiles();
-                      if (plats == null){
-                          // 当天没有检测平台日志
-                          break;
-                      }
-                      for (int k = 0 ; k < plats.length ;k++){ //检测软件层面
-                          File plat = plats[k];
-                          String platFileName = getNameFromFile(plat);
-                          SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                          Date date = new Date(plat.lastModified());
-                          map.put(convertTimeName(platFileName),format.format(date));
-                          if (isAlive(plat.lastModified())){
-                              map.put(convertStatusName(platFileName),"✅");
-                          }else{
-                              String timeStampStr1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(plat.lastModified());
-                              String timeStampStr2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis());
-                              sendWarningMessage("warning",String.format("管理平台异常❗️❗❗上次存活时间:%s,当前时间%s",
-                                      timeStampStr1,timeStampStr2));
-                              map.put(convertStatusName(platFileName),"❌");
-                          }
-                      }
-                }
-                result.add(map);
+                List<Map<String,String>> maps = doFillDataWrapper(standardMap,stationName,f,standardMap2);
+                AggregationResult(result,maps);
             }
         }
         Collections.sort(result, new Comparator<Map<String, String>>() {
@@ -220,17 +284,19 @@ public class LogDao {
             jsonPlat.put("time2",plat.getOrDefault("time2",DefaultDate));
             jsonPlat.put("status1",plat.getOrDefault("status1","❌"));
             jsonPlat.put("status2",plat.getOrDefault("status2","❌"));
-        }else if (tp.equals("fenlei")){
-            // todo :
+        }else if (tp.equals("jm")){
+            jsonPlat.put("type",plat.get("type"));
+            jsonPlat.put("subtype",plat.get("subtype"));
+            jsonPlat.put("time1",plat.getOrDefault("time1",DefaultDate));
+            jsonPlat.put("status1",plat.getOrDefault("status1","❌"));
         }
-
     }
 
 
     private JSONObject generateHeader(String tp){
         if (tp.equals("feiju")){
             JSONObject data = new JSONObject();
-            data.put("conbineNum",1 );
+            data.put("combineNum",1 );
             JSONArray superHeadersWrapper = new JSONArray();
             JSONArray superHeaders = new JSONArray();
             JSONObject o1 = new JSONObject();
@@ -308,7 +374,7 @@ public class LogDao {
         }
         else if (tp.equals("manager")){
             JSONObject data = new JSONObject();
-            data.put("conbineNum",1 );
+            data.put("combineNum",1 );
             JSONArray superHeadersWrapper = new JSONArray();
             JSONArray superHeaders = new JSONArray();
             JSONObject o1 = new JSONObject();
@@ -347,10 +413,32 @@ public class LogDao {
             columns.add(o9);
             data.put("columns", columns);
             return data;
-        }else if (tp.equals("fenlei")){
-            // todo:
+        }else if (tp.equals("jm")){
+            JSONObject data = new JSONObject();
+            data.put("combineNum",1 );
+            JSONArray columns = new JSONArray();
+            JSONObject o5 = new JSONObject();
+            o5.put("name","工作站");
+            o5.put("id","type");
+            columns.add(o5);
+            JSONObject o6 = new JSONObject();
+            o6.put("name","子类型");
+            o6.put("id","subtype");
+            columns.add(o6);
+            JSONObject o8 = new JSONObject();
+            o8.put("name","最近更新时间");
+            o8.put("id","time1");
+            columns.add(o8);
+            JSONObject o9 = new JSONObject();
+            o9.put("name","运行状态");
+            o9.put("id","status1");
+            columns.add(o9);
+            data.put("columns",columns);
+            return data;
+        }else {
+            logger.error("LogDao.generateHeader Error:invalid type");
         }
-        logger.error("LogDao.generateHeader Error:invalid type");
+
         return null;
     }
 
