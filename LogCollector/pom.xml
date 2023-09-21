@@ -10,11 +10,14 @@
     <artifactId>LogCollector</artifactId>
     <packaging>jar</packaging>
 
+    <version>1.0</version>
     <name>LogCollector</name>
     <url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+        <maven.source.skip>true</maven.source.skip>
     </properties>
 
     <dependencies>
@@ -49,10 +52,159 @@
         </dependency>
 
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.28</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.73</version>
+        </dependency>
+
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
+    <build>
+        <!--   所在打的jar包的名字     -->
+        <finalName>LogCollector</finalName>
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
+        <outputDirectory>target</outputDirectory>
+        <!-- 控制resources资源文件的拷贝, -->
+        <!-- 这里需要配置两个resource -->
+        <!-- 一个resource控制把配置文件放在target目录下用于调试 -->
+        <!-- 一个resource控制把配置文件放在target/config目录下用于部署生产环境 -->
+        <resources>
+            <!-- 配置文件复制到target目录下,不然开发调试的时候会报错 -->
+            <resource>
+                <!-- 资源文件的路径，不配置的话默认位于src/main/resources/目录下,  -->
+                <directory>src/main/resources</directory>
+                <!-- 是否对资源文件进行过滤 -->
+                <filtering>true</filtering>
+                <!-- 这里没有配置targetPath，默认复制到outputDirectory目录下  -->
+            </resource>
+            <!-- 配置文件放在target/config目录下 -->
+            <resource>
+                <directory>src/main/resources</directory>
+                <targetPath>${project.build.directory}/config</targetPath>
+            </resource>
+        </resources>
+
+        <!-- maven 构建配置 -->
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                        <!-- 清单文件 -->
+                        <!-- 打包jar文件时，配置manifest文件，加入lib包的jar依赖 -->
+                        <manifest>
+                            <mainClass>com.shu.iot.app.LogCollectApplication</mainClass>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                        </manifest>
+                        <!-- 配置文件外置,需要把配置文件目录加入到classpath -->
+                        <manifestEntries>
+                            <Class-Path>config/</Class-Path>
+                        </manifestEntries>
+                    </archive>
+                    <!-- 指定需要把哪些文件打入到jar包中,  -->
+                    <!-- ** 代表jar包根目录 -->
+                    <!-- **/com/ 代表jar包根目录下仅包含com目录(我所有的程序都在com包下), 当然打好之后还会包含生成的manifest目录 -->
+                    <!-- 注意com后面的/一定不要省去,不然maven会认为这是一个文件名 -->
+                    <!-- includes或者excludes一定要指定,不然会把target下所有的文件都打进去 -->
+                    <includes>
+                        <include>**/com/</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/mappings/</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <!-- 拷贝依赖的jar包到lib目录 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>copy</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <!-- 拷贝依赖的jar包到lib目录 -->
+                            <outputDirectory>
+                                ${project.build.directory}/lib
+                            </outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- 解决资源文件的编码问题 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <!-- 打包source文件为jar文件 -->
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <attach>true</attach>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <!-- 指定jdk编译级别为jdk1.8 -->
+                    <source>8</source>
+                    <target>8</target>
+                    <!--  跳过单元测试-->
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+
+            <!-- maven-surefire-plugin 用于配置执行JUnit单元测试,这里无所谓 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M1</version>
+                <configuration>
+                    <!-- 跳过单元测试-->
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
