@@ -1,2 +1,6 @@
+[common]
+log.sink.ip = 192.168.1.130
+log.sink.port = 8082
 [path]
-path.managerPlat = E:\Workspaces\VisualStudioProjects\NewPlat_new_auto-yff-v1.13\NewPlat_new_auto(更新版)\NewPlat\bin\Debug\New\TestInfo
+station117.managerPlat = E:\Workspaces\VisualStudioProjects\NewPlat_new_auto-yff-v1.13\NewPlat_new_auto(更新版)\NewPlat\bin\Debug\New\TestInfo
+station1.csbPlat = E:\Workspaces\VisualStudioProjects\NewPlat_new_auto-yff-v1.13\NewPlat_new_auto(更新版)\NewPlat\bin\Debug\New\Info
