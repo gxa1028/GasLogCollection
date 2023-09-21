@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shu.iot.springlog.mapper.LogMapper">
+    <insert id="save2" parameterType="MeterTest">
+        insert into log_meter_test(id, meter_id, plat_type, start_time, end_time, status, detail, result)
+        values (#{id}, #{meterId}, #{platType}, #{startTime}, #{endTime}, #{status}, #{detail},#{result}) on DUPLICATE
+        KEY
+        <if test="status == '正测'">
+            update meter_id = #{meterId},start_time = #{startTime} ,status = #{status},detail =#{detail},`result`=#{result},end_time=#{endTime}
+        </if>
+        <if test="status == '完成'">
+            UPDATE meter_id = #{meterId},end_time = #{endTime},status = #{status},detail=#{detail}, `result` = #{result}
+        </if>
+    </insert>
+
+    <insert id="save2history" parameterType="MeterTest">
+        insert into log_meter_test_history(id, meter_id, plat_type, start_time, end_time, status, detail, result)
+        select id,
+               meter_id,
+               plat_type,
+               start_time,
+               end_time,
+               status,
+               detail,
+               result
+        from log_meter_test
+        where id = #{id} and plat_type = #{platType}
+    </insert>
+</mapper>

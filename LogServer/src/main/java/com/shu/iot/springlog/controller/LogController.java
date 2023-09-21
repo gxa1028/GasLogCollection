@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Map;
@@ -33,7 +35,7 @@ public class LogController {
     @ResponseBody
     public String dataUpload(@PathVariable("workStationId")String workStationId, @PathVariable("platName")String platName
                             , @RequestBody byte[] data){
-        logger.info("data=",data);
+        logger.info("upload:{}",data);
         if (!isValidPath(workStationId,platName)){
             return "fail";
         }
@@ -44,6 +46,22 @@ public class LogController {
     @RequestMapping(value = "/fetch/{feiju}",method = RequestMethod.GET)
     @ResponseBody
     public String fetchFeiju(@PathVariable("feiju")String tp){
+        logger.info("fetch:{}",tp);
         return logService.fetchAllData(tp);
+    }
+
+    @RequestMapping(value = "/keylog",method = RequestMethod.POST)
+    @ResponseBody
+    public String dataUpload2(@RequestBody byte[] data){
+        logger.info("data:",data);
+        logService.save2(data);
+        return "success";
+    }
+    // 仅支持按照工作站维度下载
+    @RequestMapping(value = "/download",method = RequestMethod.GET)
+    public void download(HttpServletRequest request, HttpServletResponse response){
+        logger.info("download/station_name:{},start_time:{},end_time:{}",
+                request.getParameter("station_name"),request.getParameter("start_time"),request.getParameter("end_time"));
+        logService.download(request,response);
     }
 }

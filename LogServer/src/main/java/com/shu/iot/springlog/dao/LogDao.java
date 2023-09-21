@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.shu.iot.springlog.common.Mapping;
 import com.shu.iot.springlog.controller.LogController;
+import com.shu.iot.springlog.entity.MeterTest;
+import com.shu.iot.springlog.mapper.LogMapper;
 import com.shu.iot.springlog.util.MailClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -142,8 +144,8 @@ public class LogDao {
                     String first = "";
                     String second = "";
                     try {
-                       first = platFileName.split("-")[0];
-                       second = platFileName.split("-")[1];
+                       first = platFileName.split("_")[0];
+                       second = platFileName.split("_")[1];
                     }catch (Exception e){
                         logger.error("LogDao.doFillDataWrapper err");
                     }
@@ -438,7 +440,6 @@ public class LogDao {
         }else {
             logger.error("LogDao.generateHeader Error:invalid type");
         }
-
         return null;
     }
 
