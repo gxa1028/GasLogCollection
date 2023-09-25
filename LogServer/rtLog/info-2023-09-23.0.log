@@ -1,0 +1,26 @@
+2023-09-23 09:56:21.915 [main] INFO  com.shu.iot.springlog.SpringLogApplication - Starting SpringLogApplication using Java 1.8.0_381 on suntaodeMacBook-Air.local with PID 82010 (/Users/suntao/work/GasLogCollection/LogServer/target/classes started by suntao in /Users/suntao/work/GasLogCollection)
+2023-09-23 09:56:21.918 [main] INFO  com.shu.iot.springlog.SpringLogApplication - No active profile set, falling back to 1 default profile: "default"
+2023-09-23 09:56:22.317 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8082 (http)
+2023-09-23 09:56:22.320 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
+2023-09-23 09:56:22.321 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-09-23 09:56:22.321 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.78]
+2023-09-23 09:56:22.375 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-09-23 09:56:22.375 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 436 ms
+2023-09-23 09:56:22.646 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
+2023-09-23 09:56:22.656 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8082 (http) with context path ''
+2023-09-23 09:56:22.663 [main] INFO  com.shu.iot.springlog.SpringLogApplication - Started SpringLogApplication in 0.978 seconds (JVM running for 1.19)
+2023-09-23 09:56:25.006 [scheduling-1] INFO  com.shu.iot.springlog.service.LogService - 定时任务触发
+2023-09-23 09:56:30.002 [scheduling-1] INFO  com.shu.iot.springlog.service.LogService - 定时任务触发
+2023-09-23 09:56:35.005 [scheduling-1] INFO  com.shu.iot.springlog.service.LogService - 定时任务触发
+2023-09-23 09:56:40.003 [scheduling-1] INFO  com.shu.iot.springlog.service.LogService - 定时任务触发
+2023-09-23 10:11:07.089 [main] INFO  com.shu.iot.springlog.SpringLogApplication - Starting SpringLogApplication using Java 1.8.0_381 on suntaodeMacBook-Air.local with PID 83073 (/Users/suntao/work/GasLogCollection/LogServer/target/classes started by suntao in /Users/suntao/work/GasLogCollection)
+2023-09-23 10:11:07.092 [main] INFO  com.shu.iot.springlog.SpringLogApplication - No active profile set, falling back to 1 default profile: "default"
+2023-09-23 10:11:07.501 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8082 (http)
+2023-09-23 10:11:07.505 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
+2023-09-23 10:11:07.505 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-09-23 10:11:07.505 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.78]
+2023-09-23 10:11:07.561 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-09-23 10:11:07.561 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 450 ms
+2023-09-23 10:11:07.869 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
+2023-09-23 10:11:07.880 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8082 (http) with context path ''
+2023-09-23 10:11:07.886 [main] INFO  com.shu.iot.springlog.SpringLogApplication - Started SpringLogApplication in 1.023 seconds (JVM running for 1.228)

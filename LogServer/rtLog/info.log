@@ -1,0 +1,150 @@
+2023-09-25 16:53:03.439 [main] INFO  com.shu.iot.springlog.SpringLogApplication - Starting SpringLogApplication using Java 1.8.0_381 on suntaodeMacBook-Air.local with PID 81426 (/Users/suntao/work/GasLogCollection/LogServer/target/classes started by suntao in /Users/suntao/work/GasLogCollection)
+2023-09-25 16:53:03.442 [main] INFO  com.shu.iot.springlog.SpringLogApplication - No active profile set, falling back to 1 default profile: "default"
+2023-09-25 16:53:03.875 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8082 (http)
+2023-09-25 16:53:03.878 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
+2023-09-25 16:53:03.879 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-09-25 16:53:03.879 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.78]
+2023-09-25 16:53:03.977 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-09-25 16:53:03.977 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 514 ms
+2023-09-25 16:53:04.297 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
+2023-09-25 16:53:04.309 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8082 (http) with context path ''
+2023-09-25 16:53:04.316 [main] INFO  com.shu.iot.springlog.SpringLogApplication - Started SpringLogApplication in 1.136 seconds (JVM running for 1.385)
+2023-09-25 16:54:01.002 [scheduling-1] INFO  com.shu.iot.springlog.service.LogService - 定时任务触发
+2023-09-25 16:54:01.006 [scheduling-1] INFO  com.shu.iot.springlog.service.LogService - LogService.deleteOutDateLog:delete file:./log/station1/2023-09-20
+2023-09-25 16:54:08.879 [http-nio-8082-exec-2] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-25 16:54:08.879 [http-nio-8082-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-09-25 16:54:08.880 [http-nio-8082-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2023-09-25 16:54:23.350 [http-nio-8082-exec-4] INFO  com.shu.iot.springlog.controller.LogController - fetch:jm
+2023-09-25 16:54:32.881 [http-nio-8082-exec-5] INFO  com.shu.iot.springlog.controller.LogController - fetch:feiju
+2023-09-25 16:55:01.002 [scheduling-1] INFO  com.shu.iot.springlog.service.LogService - 定时任务触发
+2023-09-25 16:56:01.001 [scheduling-1] INFO  com.shu.iot.springlog.service.LogService - 定时任务触发
+2023-09-25 16:56:09.068 [http-nio-8082-exec-8] INFO  com.shu.iot.springlog.controller.LogController - upload:[49, 49, 50, 51, 50, 51, 100, 102, 100, 102, 100, 103]
+2023-09-25 16:56:30.169 [http-nio-8082-exec-9] INFO  com.shu.iot.springlog.controller.LogController - upload:[49, 49, 50, 51, 50, 51, 100, 102, 100, 102, 100, 103]
+2023-09-25 16:56:47.618 [http-nio-8082-exec-10] INFO  com.shu.iot.springlog.controller.LogController - fetch:feiju
+2023-09-25 16:57:01.001 [scheduling-1] INFO  com.shu.iot.springlog.service.LogService - 定时任务触发
+2023-09-25 16:58:01.001 [scheduling-1] INFO  com.shu.iot.springlog.service.LogService - 定时任务触发
+2023-09-25 16:59:01.001 [scheduling-1] INFO  com.shu.iot.springlog.service.LogService - 定时任务触发
+2023-09-25 17:00:01.001 [scheduling-1] INFO  com.shu.iot.springlog.service.LogService - 定时任务触发
+2023-09-25 17:01:01.002 [scheduling-1] INFO  com.shu.iot.springlog.service.LogService - 定时任务触发
+2023-09-25 17:02:01.002 [scheduling-1] INFO  com.shu.iot.springlog.service.LogService - 定时任务触发
+2023-09-25 17:03:01.002 [scheduling-1] INFO  com.shu.iot.springlog.service.LogService - 定时任务触发
+2023-09-25 17:04:00.997 [scheduling-1] INFO  com.shu.iot.springlog.service.LogService - 定时任务触发
+2023-09-25 17:08:41.140 [main] INFO  com.shu.iot.springlog.SpringLogApplication - Starting SpringLogApplication using Java 1.8.0_381 on suntaodeMacBook-Air.local with PID 82514 (/Users/suntao/work/GasLogCollection/LogServer/target/classes started by suntao in /Users/suntao/work/GasLogCollection)
+2023-09-25 17:08:41.142 [main] INFO  com.shu.iot.springlog.SpringLogApplication - No active profile set, falling back to 1 default profile: "default"
+2023-09-25 17:08:41.601 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8082 (http)
+2023-09-25 17:08:41.604 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
+2023-09-25 17:08:41.605 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-09-25 17:08:41.605 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.78]
+2023-09-25 17:08:41.660 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-09-25 17:08:41.660 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 498 ms
+2023-09-25 17:08:41.949 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
+2023-09-25 17:08:41.959 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8082 (http) with context path ''
+2023-09-25 17:08:41.966 [main] INFO  com.shu.iot.springlog.SpringLogApplication - Started SpringLogApplication in 1.059 seconds (JVM running for 1.296)
+2023-09-25 17:08:45.080 [http-nio-8082-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-25 17:08:45.080 [http-nio-8082-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-09-25 17:08:45.081 [http-nio-8082-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2023-09-25 17:08:45.098 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.controller.LogController - fetch:feiju
+2023-09-25 17:08:45.101 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData station_file:station1
+2023-09-25 17:08:45.898 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData station_file:.DS_Store
+2023-09-25 17:08:45.899 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData station_file:station2
+2023-09-25 17:19:57.772 [main] INFO  com.shu.iot.springlog.SpringLogApplication - Starting SpringLogApplication using Java 1.8.0_381 on suntaodeMacBook-Air.local with PID 83285 (/Users/suntao/work/GasLogCollection/LogServer/target/classes started by suntao in /Users/suntao/work/GasLogCollection)
+2023-09-25 17:19:57.773 [main] INFO  com.shu.iot.springlog.SpringLogApplication - No active profile set, falling back to 1 default profile: "default"
+2023-09-25 17:19:58.219 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8082 (http)
+2023-09-25 17:19:58.223 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
+2023-09-25 17:19:58.223 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-09-25 17:19:58.223 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.78]
+2023-09-25 17:19:58.281 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-09-25 17:19:58.281 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 489 ms
+2023-09-25 17:19:58.559 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
+2023-09-25 17:19:58.569 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8082 (http) with context path ''
+2023-09-25 17:19:58.575 [main] INFO  com.shu.iot.springlog.SpringLogApplication - Started SpringLogApplication in 1.051 seconds (JVM running for 1.372)
+2023-09-25 17:20:04.511 [http-nio-8082-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-25 17:20:04.512 [http-nio-8082-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-09-25 17:20:04.513 [http-nio-8082-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2023-09-25 17:20:04.526 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.controller.LogController - fetch:feiju
+2023-09-25 17:20:04.529 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData station_file:station1
+2023-09-25 17:20:04.529 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.doFillDataWrapper date file:2023-09-25
+2023-09-25 17:20:04.529 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.doFillDataWrapper plat_file:csb_plat.log
+2023-09-25 17:20:05.240 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData resultsize:1
+2023-09-25 17:20:05.240 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData station_file:.DS_Store
+2023-09-25 17:20:05.240 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData resultsize:1
+2023-09-25 17:20:05.240 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData station_file:station2
+2023-09-25 17:20:05.241 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.doFillDataWrapper date file:2023-09-25
+2023-09-25 17:20:05.241 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.doFillDataWrapper plat_file:xzy_plat.log
+2023-09-25 17:20:05.907 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData resultsize:2
+2023-09-25 17:20:13.917 [http-nio-8082-exec-3] INFO  com.shu.iot.springlog.controller.LogController - fetch:feiju
+2023-09-25 17:20:13.917 [http-nio-8082-exec-3] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData station_file:station1
+2023-09-25 17:20:13.918 [http-nio-8082-exec-3] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.doFillDataWrapper date file:2023-09-25
+2023-09-25 17:20:13.918 [http-nio-8082-exec-3] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.doFillDataWrapper plat_file:csb_plat.log
+2023-09-25 17:20:14.577 [http-nio-8082-exec-3] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData resultsize:1
+2023-09-25 17:20:14.578 [http-nio-8082-exec-3] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData station_file:.DS_Store
+2023-09-25 17:20:14.578 [http-nio-8082-exec-3] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData resultsize:1
+2023-09-25 17:20:14.578 [http-nio-8082-exec-3] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData station_file:station2
+2023-09-25 17:20:14.579 [http-nio-8082-exec-3] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.doFillDataWrapper date file:2023-09-25
+2023-09-25 17:20:14.579 [http-nio-8082-exec-3] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.doFillDataWrapper plat_file:xzy_plat.log
+2023-09-25 17:20:15.200 [http-nio-8082-exec-3] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData resultsize:2
+2023-09-25 17:34:55.742 [main] INFO  com.shu.iot.springlog.SpringLogApplication - Starting SpringLogApplication using Java 1.8.0_381 on suntaodeMacBook-Air.local with PID 84318 (/Users/suntao/work/GasLogCollection/LogServer/target/classes started by suntao in /Users/suntao/work/GasLogCollection)
+2023-09-25 17:34:55.744 [main] INFO  com.shu.iot.springlog.SpringLogApplication - No active profile set, falling back to 1 default profile: "default"
+2023-09-25 17:34:56.209 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8082 (http)
+2023-09-25 17:34:56.213 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
+2023-09-25 17:34:56.213 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-09-25 17:34:56.213 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.78]
+2023-09-25 17:34:56.274 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-09-25 17:34:56.274 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 508 ms
+2023-09-25 17:34:56.576 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
+2023-09-25 17:34:56.586 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8082 (http) with context path ''
+2023-09-25 17:34:56.593 [main] INFO  com.shu.iot.springlog.SpringLogApplication - Started SpringLogApplication in 1.091 seconds (JVM running for 1.423)
+2023-09-25 17:35:16.247 [http-nio-8082-exec-1] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-25 17:35:16.248 [http-nio-8082-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-09-25 17:35:16.249 [http-nio-8082-exec-1] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2023-09-25 17:35:16.267 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.controller.LogController - fetch:feiju
+2023-09-25 17:35:16.271 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData station_file:station1
+2023-09-25 17:35:16.272 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.getNameFromFile f.getPath:./log/station1
+2023-09-25 17:35:16.272 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.getNameFromFile name:station1
+2023-09-25 17:35:16.272 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.doFillDataWrapper date file:2023-09-25
+2023-09-25 17:35:16.272 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.doFillDataWrapper plat_file:csb_plat.log
+2023-09-25 17:35:16.272 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.getNameFromFile f.getPath:./log/station1/2023-09-25/csb_plat.log
+2023-09-25 17:35:16.272 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.getNameFromFile name:csb_plat.log
+2023-09-25 17:35:17.014 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData resultsize:1
+2023-09-25 17:35:17.014 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData station_file:.DS_Store
+2023-09-25 17:35:17.015 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData resultsize:1
+2023-09-25 17:35:17.015 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData station_file:station2
+2023-09-25 17:35:17.015 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.getNameFromFile f.getPath:./log/station2
+2023-09-25 17:35:17.015 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.getNameFromFile name:station2
+2023-09-25 17:35:17.015 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.doFillDataWrapper date file:2023-09-25
+2023-09-25 17:35:17.016 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.doFillDataWrapper plat_file:xzy_plat.log
+2023-09-25 17:35:17.016 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.getNameFromFile f.getPath:./log/station2/2023-09-25/xzy_plat.log
+2023-09-25 17:35:17.016 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.getNameFromFile name:xzy_plat.log
+2023-09-25 17:35:17.722 [http-nio-8082-exec-1] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData resultsize:2
+2023-09-25 17:36:01.724 [main] INFO  com.shu.iot.springlog.SpringLogApplication - Starting SpringLogApplication using Java 1.8.0_381 on suntaodeMacBook-Air.local with PID 84394 (/Users/suntao/work/GasLogCollection/LogServer/target/classes started by suntao in /Users/suntao/work/GasLogCollection)
+2023-09-25 17:36:01.725 [main] INFO  com.shu.iot.springlog.SpringLogApplication - No active profile set, falling back to 1 default profile: "default"
+2023-09-25 17:36:02.254 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8082 (http)
+2023-09-25 17:36:02.258 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8082"]
+2023-09-25 17:36:02.258 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2023-09-25 17:36:02.258 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.78]
+2023-09-25 17:36:02.324 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2023-09-25 17:36:02.324 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 576 ms
+2023-09-25 17:36:02.672 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8082"]
+2023-09-25 17:36:02.685 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 8082 (http) with context path ''
+2023-09-25 17:36:02.693 [main] INFO  com.shu.iot.springlog.SpringLogApplication - Started SpringLogApplication in 1.318 seconds (JVM running for 2.099)
+2023-09-25 17:36:07.339 [http-nio-8082-exec-2] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-25 17:36:07.339 [http-nio-8082-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2023-09-25 17:36:07.340 [http-nio-8082-exec-2] INFO  org.springframework.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2023-09-25 17:36:07.355 [http-nio-8082-exec-2] INFO  com.shu.iot.springlog.controller.LogController - fetch:feiju
+2023-09-25 17:36:07.359 [http-nio-8082-exec-2] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData station_file:station1
+2023-09-25 17:36:09.454 [http-nio-8082-exec-2] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.getNameFromFile f.getPath:./log/station1
+2023-09-25 17:36:09.477 [http-nio-8082-exec-2] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.getNameFromFile name:station1
+2023-09-25 17:41:13.361 [http-nio-8082-exec-2] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.doFillDataWrapper date file:2023-09-25
+2023-09-25 17:41:13.365 [http-nio-8082-exec-2] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.doFillDataWrapper plat_file:csb_plat.log
+2023-09-25 17:41:13.366 [http-nio-8082-exec-2] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.getNameFromFile f.getPath:./log/station1/2023-09-25/csb_plat.log
+2023-09-25 17:41:13.367 [http-nio-8082-exec-2] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.getNameFromFile name:csb_plat.log
+2023-09-25 17:41:14.078 [http-nio-8082-exec-2] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData resultsize:1
+2023-09-25 17:41:14.079 [http-nio-8082-exec-2] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData station_file:.DS_Store
+2023-09-25 17:41:14.079 [http-nio-8082-exec-2] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData resultsize:1
+2023-09-25 17:41:14.079 [http-nio-8082-exec-2] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.fetchAllData station_file:station2
+2023-09-25 17:41:14.079 [http-nio-8082-exec-2] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.getNameFromFile f.getPath:./log/station2
+2023-09-25 17:41:14.079 [http-nio-8082-exec-2] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.getNameFromFile name:station2
+2023-09-25 17:41:14.080 [http-nio-8082-exec-2] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.doFillDataWrapper date file:2023-09-25
+2023-09-25 17:41:14.080 [http-nio-8082-exec-2] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.doFillDataWrapper plat_file:xzy_plat.log
+2023-09-25 17:41:14.080 [http-nio-8082-exec-2] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.getNameFromFile f.getPath:./log/station2/2023-09-25/xzy_plat.log
+2023-09-25 17:41:14.081 [http-nio-8082-exec-2] INFO  com.shu.iot.springlog.dao.LogDao - LogDao.getNameFromFile name:xzy_plat.log

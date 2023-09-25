@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.logging.SimpleFormatter;
 
 @Service
@@ -170,7 +171,7 @@ public class LogService {
             log.warn("LogService.downloadWarning:下载的日志不存在");
             return;
         }
-        String zip_file_name = station_name + "|" + start_time + "|" + end_time;
+        String zip_file_name = station_name + "_" + start_time + "_" + end_time;
         String dst_file = base + "/" + zip + "/" + zip_file_name + ".zip";
         createZip(source_file, dst_file); // 每次都会重新生成压缩文件，保证每次下载请求都下载最新的
         //创建一个输入流，将读取到的文件保存到输入流

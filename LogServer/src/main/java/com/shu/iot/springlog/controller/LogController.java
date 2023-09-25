@@ -2,11 +2,13 @@ package com.shu.iot.springlog.controller;
 
 import com.shu.iot.springlog.service.LogService;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.logging.log4j.LogManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,10 +19,10 @@ import java.util.Map;
 import java.util.Set;
 
 @Controller
+@Slf4j
 public class LogController {
     @Autowired
     LogService logService;
-    private static final Logger logger = LoggerFactory.getLogger(LogController.class);
 
     private boolean isValidPath(String workStationId,String platName){
         if (workStationId.startsWith("jm")){
@@ -35,7 +37,7 @@ public class LogController {
     @ResponseBody
     public String dataUpload(@PathVariable("workStationId")String workStationId, @PathVariable("platName")String platName
                             , @RequestBody byte[] data){
-        logger.info("upload:{}",data);
+        log.info("upload:{}",data);
         if (!isValidPath(workStationId,platName)){
             return "fail";
         }
@@ -46,21 +48,21 @@ public class LogController {
     @RequestMapping(value = "/fetch/{feiju}",method = RequestMethod.GET)
     @ResponseBody
     public String fetchFeiju(@PathVariable("feiju")String tp){
-        logger.info("fetch:{}",tp);
+        log.info("fetch:{}",tp);
         return logService.fetchAllData(tp);
     }
 
     @RequestMapping(value = "/keylog",method = RequestMethod.POST)
     @ResponseBody
     public String dataUpload2(@RequestBody byte[] data){
-        logger.info("data:",data);
+        log.info("data:",data);
         logService.save2(data);
         return "success";
     }
     // 仅支持按照工作站维度下载
     @RequestMapping(value = "/download",method = RequestMethod.GET)
     public void download(HttpServletRequest request, HttpServletResponse response){
-        logger.info("download/station_name:{},start_time:{},end_time:{}",
+        log.info("download/station_name:{},start_time:{},end_time:{}",
                 request.getParameter("station_name"),request.getParameter("start_time"),request.getParameter("end_time"));
         logService.download(request,response);
     }

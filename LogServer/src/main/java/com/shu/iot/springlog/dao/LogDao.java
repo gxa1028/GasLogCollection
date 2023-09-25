@@ -7,6 +7,7 @@ import com.shu.iot.springlog.controller.LogController;
 import com.shu.iot.springlog.entity.MeterTest;
 import com.shu.iot.springlog.mapper.LogMapper;
 import com.shu.iot.springlog.util.MailClient;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +22,12 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Component
+@Slf4j
 public class LogDao {
+    // windows系统是 \\ , mac和linux是/
+    private String SPLIT = "\\";
     private static final String DefaultDate = "未检测到当天日志";
-    private static final Logger logger = LoggerFactory.getLogger(LogDao.class);
+
     @Autowired
     private MailClient mailClient;
     public void save(String firstName,String secondName,String data)  {
@@ -32,7 +36,7 @@ public class LogDao {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String currentTime = simpleDateFormat.format(date);
         try {
-            File file = new File(String.format("./log/%s/%s/%s",firstName,currentTime,secondName));
+            File file = new File(String.format("./log/%s/%s/%s.log",firstName,currentTime,secondName));
             File fileParent = file.getParentFile();
             if (!fileParent.exists()){
                 fileParent.mkdirs();
@@ -51,8 +55,10 @@ public class LogDao {
         }
     }
     public String getNameFromFile(File f){
-        String[] strs = f.getPath().split("/");
+        log.info("LogDao.getNameFromFile f.getPath:{}",f.getPath());
+        String[] strs = f.getPath().split(SPLIT);
         String name = strs[strs.length-1];
+        log.info("LogDao.getNameFromFile name:{}",name);
         return name;
     }
 
@@ -147,7 +153,7 @@ public class LogDao {
                        first = platFileName.split("_")[0];
                        second = platFileName.split("_")[1];
                     }catch (Exception e){
-                        logger.error("LogDao.doFillDataWrapper err");
+                        log.error("LogDao.doFillDataWrapper err");
                     }
                     map.put("type",standardMap.get(first));
                     map.put("subtype",standardMap2.get(second));
@@ -171,6 +177,7 @@ public class LogDao {
             map.put("type", standardMap.get(stationName));
             File[] dates = f.listFiles();
             for (int j = 0 ; j < dates.length; j++){// 日期层面
+                log.info("LogDao.doFillDataWrapper date file:{}",dates[j].getName());
                 File dateFile = dates[j];
                 String dateName = dateFile.getName();
                 Date now = new Date();
@@ -186,6 +193,7 @@ public class LogDao {
                 }
                 for (int k = 0 ; k < plats.length ;k++){ //检测软件层面
                     File plat = plats[k];
+                    log.info("LogDao.doFillDataWrapper plat_file:{}",plat.getName());
                     String platFileName = getNameFromFile(plat);
                     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     Date date = new Date(plat.lastModified());
@@ -231,11 +239,12 @@ public class LogDao {
             standardMap = Mapping.jmMapping_First;
             standardMap2 = Mapping.jmMapping_Second;
         }else{
-            logger.error("invalid type!");
+            log.error("invalid type!");
             return null;
         }
         List<Map<String,String>> result = new ArrayList<>();
         for (int i = 0 ; i < fs.length; i++){// 工作站层面
+            log.info("LogDao.fetchAllData station_file:{}",fs[i].getName());
             File f = fs[i];
             if (f.isDirectory()){
                 String stationName = getNameFromFile(f);
@@ -246,6 +255,7 @@ public class LogDao {
                 List<Map<String,String>> maps = doFillDataWrapper(standardMap,stationName,f,standardMap2);
                 AggregationResult(result,maps);
             }
+            log.info("LogDao.fetchAllData resultsize:{}",result.size());
         }
         Collections.sort(result, new Comparator<Map<String, String>>() {
             @Override
@@ -438,7 +448,7 @@ public class LogDao {
             data.put("columns",columns);
             return data;
         }else {
-            logger.error("LogDao.generateHeader Error:invalid type");
+            log.error("LogDao.generateHeader Error:invalid type");
         }
         return null;
     }
